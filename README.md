@@ -1,3 +1,3 @@
 # Front-End 
 
-`cd dev-libs` - to access the app directory
+`cd dev-libs` - to access the app directory.
