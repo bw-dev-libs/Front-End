@@ -1,5 +1,5 @@
 import React from 'react';
-import SavedDevLibsPage from '../../../../devlibs/src/components/SavedDevLibPage';
+import Play from '../Play';
 import {Route, Redirect} from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={() =>{
        if (localStorage.getItem('token'))  {
-          return <SavedDevLibsPage  />;
+          return <Play />;
         } else {
           return <Redirect to="/login" />;
         }}
