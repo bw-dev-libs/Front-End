@@ -28,15 +28,15 @@ class Login extends React.Component {
     }
     render() {
   return (
-    <div>
-      <div>
+    <Container>
+      <Page>
         
-    <form onSubmit={this.handleSubmit}>
-    <div>
-      <h1>Dev-Libs!</h1>
-      <p>Login in here!</p>
-      <p>By logging in you agree to the ridiculously long terms that you didn't read.</p>
-      </div>
+    <LoginForm onSubmit={this.handleSubmit}>
+    <Left>
+      <Header>Dev-Libs!</Header>
+      <Header>Login in here!</Header>
+      <Paragraph>By logging in you agree to the ridiculously long terms that you didn't read.</Paragraph>
+      </Left>
       <SVG viewBox="0 0 320 300">
       <linearGradient
        
@@ -55,10 +55,12 @@ class Login extends React.Component {
           offset="1"
           id="stop878" />
           </linearGradient>
-          <path
+          <Path
           d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.0016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20.1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
           </SVG>
-    <div>
+    <Right>
+    <Label>Username</Label>
+    <Form>
       <input
       type="text"
       name="username"
@@ -66,6 +68,7 @@ class Login extends React.Component {
       value={this.state.credentials.username}
       onChange={this.handleChange}
       />
+      <Label>Password</Label>
       <input
       type="password"
       name="password"
@@ -74,10 +77,11 @@ class Login extends React.Component {
       placeholder="password"
       />
       <button>Login!</button>
-      </div>
-    </form>
-    </div>
-    </div>
+      </Form>
+      </Right>
+    </LoginForm>
+    </Page>
+    </Container>
   );
     }
 }
@@ -100,18 +104,34 @@ const Container = styled.div`
   height: calc(100%-40px);
   position: absolute;
   place-content: center;
-  width: calc(100%-40px)`
+  width: calc(100%-40px)
+    @media (max-width: 767px){
+      height: auto;
+      margin-bottom: 20px;
+      padding-bottom: 20px
+    }`
 const Page = styled.div`
   display:flex;
   height: 320px;
   margin: 0 auto;
-  width: 640px`
+  width: 640px
+    @media (max-width: 767px){
+      flex-direction: column;
+      height: 630px;
+      widthL 320px
+    }`
 const Left = styled.div`
   background: white;
   height: calc(100% - 40px);
   top: 20px;
   position: relative;
-  width: 50%`
+  width: 50%
+    @media (max-width: 767px){
+      height: 100%;
+      left: 20px;
+      width: calc(100% - 40px);
+      max-width: 270px
+    }`
 const Header = styled.h1`
   font-size: 50px;
   font-weight: 900;
@@ -126,7 +146,42 @@ const Right = styled.div`
   box-shadow: 0px 0px 40px 16px rgba(166,166,166,0.22);
   color: black;
   position: relative;
-  width: 50%`
+  width: 50%;
+    @media (max-width: 767px){
+      flex-shrink: 0;
+      height: 100%;
+      width: 100%;
+      max-height: 350px
+    }`
 const SVG = styled.svg`
   position: absolute;
   width: 320px`
+const Path = styled.path`
+  fill:none;
+  stroke: url(#linearGradient);;
+  stroke-width: 4;
+  stroke-dasharray: 240 1386`
+const Form = styled.div`
+  margin: 40px;
+  position: absolute`
+const Label = styled.h2`
+  color: black;
+  display: block;
+  font-size: 14px;
+  height: 16px;
+  margin-top: 20px;
+  margin-bottom: 5px`
+const Input = styled.input`
+  background: transparent;
+  border: 0;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  width: 100%`
+const Button = styled.button`
+  color: #55af64;
+  margin-top: 40px;
+  transition: color 300ms`
+
