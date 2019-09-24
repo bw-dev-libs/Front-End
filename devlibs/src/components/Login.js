@@ -1,5 +1,6 @@
 import React from "react";
 import axiosWithAuth from './utils/axiosWithAuth';
+import styled from 'styled-components';
 
 class Login extends React.Component {
     state= {
@@ -47,12 +48,12 @@ class Login extends React.Component {
         y2="193.4992"
         gradientUnits="userSpaceOnUse">
           <stop
-          style="stop-color:#55af64;"
-          offset="0"
+          style="stopColor:#55af64;"
+          offset="0%"
           id="stop876" />
           <stop
-          style="stop-color:#f5f5f5;"
-          offset="1"
+          style="stopColor:#f5f5f5;"
+          offset="1%"
           id="stop878" />
           </linearGradient>
           <Path
@@ -61,7 +62,7 @@ class Login extends React.Component {
     <Right>
     <Label>Username</Label>
     <Form>
-      <input
+      <Input
       type="text"
       name="username"
       placeholder="username"
@@ -69,14 +70,14 @@ class Login extends React.Component {
       onChange={this.handleChange}
       />
       <Label>Password</Label>
-      <input
+      <Input
       type="password"
       name="password"
       value={this.state.credentials.password}
       onChange={this.handleChange}
       placeholder="password"
       />
-      <button>Login!</button>
+      <Button>Login!</Button>
       </Form>
       </Right>
     </LoginForm>
@@ -179,9 +180,18 @@ const Input = styled.input`
   height: 30px;
   line-height: 30px;
   outline: none !important;
-  width: 100%`
+  width: 100%;
+    ::-moz-focus-inner {
+      border: 0;
+    }`
 const Button = styled.button`
   color: #55af64;
   margin-top: 40px;
-  transition: color 300ms`
+  transition: color 300ms;
+    :focus{
+      color: #f5f5f5;
+    }
+    :active {
+      color: #a6a6a6;
+    }`
 
