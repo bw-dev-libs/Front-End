@@ -1,5 +1,5 @@
 import React from 'react';
-import DevLibsPage from '../DevLibPage';
+import DevLibsPage from '../SavedDevLibPage';
 import {Route, Redirect} from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

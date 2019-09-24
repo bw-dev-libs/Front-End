@@ -20,7 +20,7 @@ class Login extends React.Component {
     handleSubmit = e => {
       e.preventDefault();
       axiosWithAuth()
-      .post('', this.state.credentials)
+      .post('https://dev-libs.herokuapp.com/api/auth/login', this.state.credentials)
       .then(res => {
         localStorage.setItem('token', res.data.payload);
         this.props.history.push('/DevLibPage');
