@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -6,7 +6,6 @@ import * as yup from "yup";
 import logo from "../icon.svg";
 
 const RegistrationApi = "https://dev-libs.herokuapp.com/api/auth/register";
-const UsersApi = "https://dev-libs.herokuapp.com/api/users";
 const initialUserForm = {
   username: "",
 
@@ -14,22 +13,7 @@ const initialUserForm = {
 };
 
 export default function Container() {
-  const [usersList, setUsersList] = useState([]);
   const [serverError, setServerError] = useState("");
-
-  // const fetchUsers = () => {
-  //   axios
-  //     .get(UsersApi)
-  //     .then(res => {
-  //       // debugger
-  //       // console.log(res.data);
-  //       setUsersList(res.data);
-  //     })
-  //     .catch(err => {
-  //       debugger;
-  //       setServerError(err.message);
-  //     });
-  // };
 
   // 2- THIS GOES INTO <Formik /> `onSubmit` prop
   const addUser = (formValues, actions) => {
@@ -44,8 +28,6 @@ export default function Container() {
         // res.data contains the newly created friend
         // debugger;
         console.log(res.data);
-        const newlyRegisteredUser = res.data;
-        setUsersList(usersList.concat(newlyRegisteredUser));
         actions.resetForm();
         console.log("User created successfully");
       })
