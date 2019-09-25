@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
-import * as yup from "yup";
+// import * as yup from "yup";
 import logo from "../icon.svg";
 
 // const UsersApi = "https://dev-libs.herokuapp.com/api/users";
 // const TemplatesApi = "https://dev-libs.herokuapp.com/api/templates";
 const UsersApi = "https://reqres.in/api/users";
 
-const initialUserForm = {
-  username: "",
-  password: ""
-};
+// const initialUserForm = {
+//   username: "",
+//   password: ""
+// };
 const initialTemplateForm = {
-  id: "",
+  id: "", //
   programming_language: "",
   noun: "",
   verb: "",
@@ -50,7 +50,7 @@ export default function Play() {
       verb: formValues.verb,
       ing_verb: formValues.ing_verb,
       ed_verb: formValues.ed_verb,
-      noun2: formValues.noun2,
+      noun2: formValues.noun2
       // user_id: formValues.user_id
     };
     axios
@@ -81,8 +81,12 @@ export default function Play() {
       {usersList.length
         ? usersList.map(template => (
             <div key={template.id}>
-              {/* {template.first_name}'s email address is {template.email} */}
-              '{template.programming_language}' is a '{template.noun}' that '{template.verb}' while '{template.ing_verb}'. I ran outta words but '{template.ed_verb}' and '{template.noun2}' are the last ones
+              {/* {template.first_name}'s email address is {template.email} */}'
+              I was programming in '{template.programming_language}', trying to
+              get all of my '{template.noun}' to properly '{template.verb}'.
+              However, nothing was actually '{template.ing_verb}'.. It was then
+              I realized I hadn't even '{template.ed_verb}' my '{template.noun2}
+              '.
             </div>
           ))
         : "No Users Avialable!"}
@@ -90,24 +94,24 @@ export default function Play() {
   );
 }
 //------------------------------------------------
-const validate = formValues => {
-  // if(document.querySelector('#word-1').innerHTML === ''){
-  //   document.querySelector('#word-2').style.display = 'none';
-  // }
-  const errors = {};
-  if (formValues.email === "waffle@syrup.com") {
-    errors.email = "That email is already taken.";
-  }
-};
-const validationSchema = yup.object().shape({
-  name: yup.string().required("Please enter your name"),
-  email: yup.string().required("Please enter your email address"),
-  password: yup
-    .string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum.")
-    .matches(/(?=.*[0-9])/, "Password must contain a number.")
-});
+// const validate = formValues => {
+//   // if(document.querySelector('#word-1').innerHTML === ''){
+//   //   document.querySelector('#word-2').style.display = 'none';
+//   // }
+//   const errors = {};
+//   if (formValues.email === "waffle@syrup.com") {
+//     errors.email = "That email is already taken.";
+//   }
+// };
+// const validationSchema = yup.object().shape({
+//   name: yup.string().required("Please enter your name"),
+//   email: yup.string().required("Please enter your email address"),
+//   password: yup
+//     .string()
+//     .required("No password provided.")
+//     .min(8, "Password is too short - should be 8 chars minimum.")
+//     .matches(/(?=.*[0-9])/, "Password must contain a number.")
+// });
 
 const UserForm = ({ onSubmit }) => {
   return (
@@ -129,7 +133,11 @@ const UserForm = ({ onSubmit }) => {
                 !props.dirty && <div>time to start typing!!</div>
               } */}
             <div id="programming_language">
-              <Field name="programming_language" type="text" placeholder="Enter Programming Language here" />
+              <Field
+                name="programming_language"
+                type="text"
+                placeholder="Enter Programming Language here"
+              />
               <ErrorMessage name="programming_language" component="div" />
             </div>
             <div id="noun">
@@ -141,15 +149,27 @@ const UserForm = ({ onSubmit }) => {
               <ErrorMessage name="verb" component="div" />
             </div>
             <div id="ing_verb">
-              <Field name="ing_verb" type="text" placeholder="Enter a Verb ending with -ing" />
+              <Field
+                name="ing_verb"
+                type="text"
+                placeholder="Enter a Verb ending with -ing"
+              />
               <ErrorMessage name="ing_verb" component="div" />
             </div>
             <div id="ed_verb">
-              <Field name="ed_verb" type="text" placeholder="Enter a Verb enging with -ed" />
+              <Field
+                name="ed_verb"
+                type="text"
+                placeholder="Enter a Verb enging with -ed"
+              />
               <ErrorMessage name="ed_verb" component="div" />
             </div>
             <div id="noun2">
-              <Field name="noun2" type="text" placeholder="Enter another Noun here" />
+              <Field
+                name="noun2"
+                type="text"
+                placeholder="Enter another Noun here"
+              />
               <ErrorMessage name="noun2" component="div" />
             </div>
             <button type="submit">Submit</button>
