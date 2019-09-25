@@ -72,6 +72,10 @@ export default function Play() {
 }
 //------------------------------------------------
 const validate = formValues => {
+
+  // if(document.querySelector('#word-1').innerHTML === ''){
+  //   document.querySelector('#word-2').style.display = 'none';
+  // }
   const errors = {};
   if (formValues.email === "waffle@syrup.com") {
     errors.email = "That email is already taken.";
@@ -86,6 +90,8 @@ const validationSchema = yup.object().shape({
     .min(8, "Password is too short - should be 8 chars minimum.")
     .matches(/(?=.*[0-9])/, "Password must contain a number.")
 });
+
+
 
 const UserForm = ({ onSubmit }) => {
   return (
@@ -106,12 +112,12 @@ const UserForm = ({ onSubmit }) => {
             {/* {
                 !props.dirty && <div>time to start typing!!</div>
               } */}
-            <div  id="word-1">
-              <Field name="word-1" type="text" placeholder="Name" />
+            <div id="word-1">
+              <Field name="word-1" type="text" placeholder="word" />
               <ErrorMessage name="name" component="div" />
             </div>
             <div id="word-2">
-              <Field name="word-2" type="email" placeholder="Email" />
+              <Field name="word-2" type="email" placeholder="word" />
               <ErrorMessage name="email" component="div" />
             </div>
             <div id="word-3">
@@ -154,16 +160,3 @@ const UserForm = ({ onSubmit }) => {
     />
   );
 };
-
-// //-----------------------
-// import React from "react";
-
-// const Play = () => {
-//   return(
-//       <>Play Dev-Libs!</>
-
-//   );
-// };
-
-// export default Play
-// ;
