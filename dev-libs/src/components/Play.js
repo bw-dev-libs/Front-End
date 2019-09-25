@@ -5,11 +5,23 @@ import axios from "axios";
 import * as yup from "yup";
 import logo from "../icon.svg";
 
+// const UsersApi = "https://dev-libs.herokuapp.com/api/users";
+// const TemplatesApi = "https://dev-libs.herokuapp.com/api/templates";
 const UsersApi = "https://reqres.in/api/users";
+
 const initialUserForm = {
-  name: "",
-  email: "",
+  username: "",
   password: ""
+};
+const initialTemplateForm = {
+  id: "",
+  programming_language: "",
+  noun: "",
+  verb: "",
+  ing_verb: "",
+  ed_verb: "",
+  noun2: "",
+  user_id: ""
 };
 
 export default function Play() {
@@ -29,18 +41,23 @@ export default function Play() {
   };
 
   // 2- THIS GOES INTO <Formik /> `onSubmit` prop
-  const addUser = (formValues, actions) => {
-    const friendToPost = {
-      name: formValues.name,
-      email: formValues.email,
-      password: formValues.password
+  const addTemplate = (formValues, actions) => {
+    const templateToPost = {
+      id: formValues.id,
+      programming_language: formValues.programming_language,
+      noun: formValues.noun,
+      verb: formValues.verb,
+      ing_verb: formValues.ing_verb,
+      ed_verb: formValues.ed_verb,
+      noun2: formValues.noun2,
+      user_id: formValues.user_id
     };
     axios
-      .post(UsersApi, friendToPost)
+      .post(UsersApi, templateToPost)
       .then(res => {
         // res.data contains the newly created friend
-        const newLyCreatedFriendFromServer = res.data;
-        setUsersList(usersList.concat(newLyCreatedFriendFromServer));
+        const newlyCreatedTemplate = res.data;
+        setUsersList(usersList.concat(newlyCreatedTemplate));
         actions.resetForm();
       })
       .catch(err => {
@@ -57,22 +74,21 @@ export default function Play() {
       {/* should be its own component: */}
       {serverError}
 
-      <UserForm onSubmit={addUser} />
+      <UserForm onSubmit={addTemplate} />
 
       {/* should be its own component: */}
-      {/* {usersList.length
-        ? usersList.map(user => (
-            <div key={user.id}>
-              {user.name}  the address {user.email}
+      {usersList.length
+        ? usersList.map(template => (
+            <div key={template.id}>
+              {template.name} the address {template.email}
             </div>
           ))
-        : "No Users Avialable!"} */}
+        : "No Users Avialable!"}
     </div>
   );
 }
 //------------------------------------------------
 const validate = formValues => {
-
   // if(document.querySelector('#word-1').innerHTML === ''){
   //   document.querySelector('#word-2').style.display = 'none';
   // }
@@ -91,14 +107,12 @@ const validationSchema = yup.object().shape({
     .matches(/(?=.*[0-9])/, "Password must contain a number.")
 });
 
-
-
 const UserForm = ({ onSubmit }) => {
   return (
     <Formik
       validate={validate}
       validationSchema={validationSchema}
-      initialValues={initialUserForm}
+      initialValues={initialTemplateForm}
       onSubmit={onSubmit}
       render={props => {
         return (
@@ -112,48 +126,33 @@ const UserForm = ({ onSubmit }) => {
             {/* {
                 !props.dirty && <div>time to start typing!!</div>
               } */}
-            <div id="word-1">
-              <Field name="word-1" type="text" placeholder="word" />
-              <ErrorMessage name="name" component="div" />
+            <div id="programming_language">
+              <Field name="programming_language" type="text" placeholder="Enter Programming Language here" />
+              <ErrorMessage name="programming_language" component="div" />
             </div>
-            <div id="word-2">
-              <Field name="word-2" type="email" placeholder="word" />
-              <ErrorMessage name="email" component="div" />
+            <div id="noun">
+              <Field name="noun" type="text" placeholder="Enter a Noun" />
+              <ErrorMessage name="noun" component="div" />
             </div>
-            <div id="word-3">
-              <Field name="word-3" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
+            <div id="verb">
+              <Field name="verb" type="text" placeholder="Enter a Verb" />
+              <ErrorMessage name="verb" component="div" />
             </div>
-            <div id="word-4">
-              <Field name="word-4" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
+            <div id="ing_verb">
+              <Field name="ing_verb" type="text" placeholder="Enter a Verb ending with -ing" />
+              <ErrorMessage name="ing_verb" component="div" />
             </div>
-            <div id="word-5">
-              <Field name="word-5" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
+            <div id="ed_verb">
+              <Field name="ed_verb" type="text" placeholder="Enter a Verb enging with -ed" />
+              <ErrorMessage name="ed_verb" component="div" />
             </div>
-            <div id="word-6">
-              <Field name="word-6" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
+            <div id="noun2">
+              <Field name="noun2" type="text" placeholder="Enter another Noun here" />
+              <ErrorMessage name="noun2" component="div" />
             </div>
-            <div id="word-7">
-              <Field name="word-7" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
-            </div>
-            <div id="word-8">
-              <Field name="word-8" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
-            </div>
-            <div id="word-9">
-              <Field name="word-9" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
-            </div>
-            <div id="word-10">
-              <Field name="word-10" type="text" placeholder="word" />
-              <ErrorMessage name="password" component="div" />
-            </div>
-            <button type="submit">Back</button>&nbsp;&nbsp;
-            <button type="submit">Next</button>
+            <button type="submit">Submit</button>
+            {/* <button type="submit">Back</button>&nbsp;&nbsp; */}
+            {/* <button type="submit">Next</button> */}
           </Form>
         );
       }}
