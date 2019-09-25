@@ -10,8 +10,7 @@ const UsersApi = "https://dev-libs.herokuapp.com/api/users";
 const initialUserForm = {
   username: "",
 
-  password: "",
-  termsOfService: false
+  password: ""
 };
 
 export default function Container() {
