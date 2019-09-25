@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 // import * as yup from "yup";
 import logo from "../icon.svg";
+import axiosWithAuth from "./utils/axiosWithAuth";
 
 // const UsersApi = "https://dev-libs.herokuapp.com/api/users";
 // const TemplatesApi = "https://dev-libs.herokuapp.com/api/templates";
@@ -53,8 +54,9 @@ export default function Play() {
       noun2: formValues.noun2
       // user_id: formValues.user_id
     };
-    axios
-      .post(UsersApi, templateToPost)
+    const ID = localStorage.getItem("userID");
+    axiosWithAuth()
+      .post(`https://dev-libs.herokuapp.com/api/users/${ID}/templates`, templateToPost)
       .then(res => {
         // res.data contains the newly created friend
         const newlyCreatedTemplate = res.data;
@@ -62,7 +64,7 @@ export default function Play() {
         actions.resetForm();
       })
       .catch(err => {
-        debugger;
+        console.log(err);
       });
   };
 

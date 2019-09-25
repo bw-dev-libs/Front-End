@@ -1,5 +1,6 @@
 import React from "react";
 import axiosWithAuth from './utils/axiosWithAuth';
+import axios from 'axios';
 
 class Login extends React.Component {
     state= {
@@ -19,16 +20,13 @@ class Login extends React.Component {
     handleSubmit = e => {
       e.preventDefault();
       console.log(this.state.credentials)
-      axiosWithAuth()
+      axios
       .post('https://dev-libs.herokuapp.com/api/auth/login', this.state.credentials)
       
       .then(res => {
         console.log(res)
-<<<<<<< HEAD
         localStorage.setItem('token', res.data.token);
-=======
-        localStorage.setItem('token', res.data.payload);
->>>>>>> 39b79ddac6d5e7581c81793341f23e30448875c5
+        localStorage.setItem("userID", res.data.user);
         this.props.history.push('/Dashboard');
       })
       

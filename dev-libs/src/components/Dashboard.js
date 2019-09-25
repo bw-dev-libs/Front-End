@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import axiosWithAuth from "./utils/axiosWithAuth";
 
 class Dashboard extends React.Component {
   constructor() {
@@ -10,7 +11,18 @@ class Dashboard extends React.Component {
       updateError: '',
       deleteSuccessMessage: '',
       deleteError: '',
+      usersList: [],
     };
+  }
+
+  componentDidMount(){
+    const ID = localStorage.getItem("userID");
+    axiosWithAuth()
+    .get(`https://dev-libs.herokuapp.com/api/users/${ID}/templates`)
+    .then(res => {
+      console.log(res)
+      this.setState({usersList: res.data})
+    })
   }
   update = game => {
   axios
@@ -42,7 +54,19 @@ class Dashboard extends React.Component {
   return(
       <>Dashboard!
       // Games here
-      <button type="submit"><Link className = 'landing-btn' to='/play'>Play!</Link></button> &nbsp;
+      {this.state.usersList.length
+        ? this.state.usersList.map(template => (
+            <div key={template.id}>
+              {/* {template.first_name}'s email address is {template.email} */}'
+              I was programming in '{template.programming_language}', trying to
+              get all of my '{template.noun}' to properly '{template.verb}'.
+              However, nothing was actually '{template.ing_verb}'.. It was then
+              I realized I hadn't even '{template.ed_verb}' my '{template.noun2}
+              '.
+            </div>
+          ))
+        : "No Stories Avialable!"}
+      <button type="submit"><Link className = 'landing-btn' to='/play'>Play!</Link></button> 
       <button type="submit"><Link className = 'landing-btn' to='/edit'>Edit!</Link></button>
       </>
   );}
