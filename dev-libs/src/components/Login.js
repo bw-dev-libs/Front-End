@@ -20,7 +20,7 @@ class Login extends React.Component {
       e.preventDefault();
       console.log(this.state.credentials)
       axiosWithAuth()
-      .post('https://dev-libs.herokuapp.com/api/auth/login', this.state.credentials)
+      .post('https://dev-libs.herokuapp.com/api/login', this.state.credentials)
       
       .then(res => {
         console.log(res)
