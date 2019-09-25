@@ -17,19 +17,19 @@ export default function Container() {
   const [usersList, setUsersList] = useState([]);
   const [serverError, setServerError] = useState("");
 
-  const fetchUsers = () => {
-    axios
-      .get(UsersApi)
-      .then(res => {
-        // debugger
-        // console.log(res.data);
-        setUsersList(res.data);
-      })
-      .catch(err => {
-        debugger;
-        setServerError(err.message);
-      });
-  };
+  // const fetchUsers = () => {
+  //   axios
+  //     .get(UsersApi)
+  //     .then(res => {
+  //       // debugger
+  //       // console.log(res.data);
+  //       setUsersList(res.data);
+  //     })
+  //     .catch(err => {
+  //       debugger;
+  //       setServerError(err.message);
+  //     });
+  // };
 
   // 2- THIS GOES INTO <Formik /> `onSubmit` prop
   const addUser = (formValues, actions) => {
@@ -47,15 +47,16 @@ export default function Container() {
         const newlyRegisteredUser = res.data;
         setUsersList(usersList.concat(newlyRegisteredUser));
         actions.resetForm();
+        console.log("User created successfully");
       })
       .catch(err => {
         debugger;
       });
   };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
 
   return (
     <div>
@@ -65,9 +66,9 @@ export default function Container() {
       <UserForm onSubmit={addUser} />
 
       {/* should be its own component: */}
-      {usersList.length
+      {/* {usersList.length
         ? usersList.map(user => <div key={user.id}>{user.username}</div>)
-        : "No Users Avialable!"}
+        : "No Users Avialable!"} */}
     </div>
   );
 }
