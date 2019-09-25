@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axiosWithAuth from './utils/axiosWithAuth';
 // import { Link } from "react-router-dom";
 import axios from "axios";
 // import * as yup from "yup";
@@ -7,7 +8,7 @@ import logo from "../icon.svg";
 
 // const UsersApi = "https://dev-libs.herokuapp.com/api/users";
 // const TemplatesApi = "https://dev-libs.herokuapp.com/api/templates";
-const UsersApi = "https://reqres.in/api/users";
+const UsersApi = "https://dev-libs.herokuapp.com/api/users/1/templates";
 
 // const initialUserForm = {
 //   username: "",
@@ -28,18 +29,18 @@ export default function Play() {
   const [usersList, setUsersList] = useState([]);
   const [serverError, setServerError] = useState("");
 
-  const fetchUsers = () => {
-    axios
-      .get(UsersApi)
-      .then(res => {
-        // debugger
-        setUsersList(res.data.data);
-      })
-      .catch(err => {
-        debugger;
-        setServerError(err.message);
-      });
-  };
+  // const fetchUsers = () => {
+  //   axios
+  //     .get(UsersApi)
+  //     .then(res => {
+  //       // debugger
+  //       setUsersList(res.data.data);
+  //     })
+  //     .catch(err => {
+  //       debugger;
+  //       setServerError(err.message);
+  //     });
+  // };
 
   // 2- THIS GOES INTO <Formik /> `onSubmit` prop
   const addTemplate = (formValues, actions) => {
@@ -50,15 +51,18 @@ export default function Play() {
       verb: formValues.verb,
       ing_verb: formValues.ing_verb,
       ed_verb: formValues.ed_verb,
-      noun2: formValues.noun2
-      // user_id: formValues.user_id
+      noun2: formValues.noun2,
+      // user_id: formValues.user_id,
+      user_id: "1",
     };
-    axios
+    // axiosWithAuth().post(UsersApi, and so on . . .)
+    axiosWithAuth()
       .post(UsersApi, templateToPost)
       .then(res => {
         // res.data contains the newly created friend
-        const newlyCreatedTemplate = res.data;
-        setUsersList(usersList.concat(newlyCreatedTemplate));
+        // const newlyCreatedTemplate = res.data;
+        console.log(res.data);
+        // setUsersList(usersList.concat(newlyCreatedTemplate));
         actions.resetForm();
       })
       .catch(err => {
@@ -66,9 +70,9 @@ export default function Play() {
       });
   };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
 
   return (
     <div>
@@ -90,6 +94,7 @@ export default function Play() {
             </div>
           ))
         : "No Users Avialable!"}
+        
     </div>
   );
 }
