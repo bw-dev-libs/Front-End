@@ -32,6 +32,7 @@ export default function Play() {
     axios
       .get(UsersApi)
       .then(res => {
+        // debugger
         setUsersList(res.data.data);
       })
       .catch(err => {
@@ -43,14 +44,14 @@ export default function Play() {
   // 2- THIS GOES INTO <Formik /> `onSubmit` prop
   const addTemplate = (formValues, actions) => {
     const templateToPost = {
-      id: formValues.id,
+      // id: formValues.id,
       programming_language: formValues.programming_language,
       noun: formValues.noun,
       verb: formValues.verb,
       ing_verb: formValues.ing_verb,
       ed_verb: formValues.ed_verb,
       noun2: formValues.noun2,
-      user_id: formValues.user_id
+      // user_id: formValues.user_id
     };
     axios
       .post(UsersApi, templateToPost)
@@ -80,7 +81,8 @@ export default function Play() {
       {usersList.length
         ? usersList.map(template => (
             <div key={template.id}>
-              {template.name} the address {template.email}
+              {/* {template.first_name}'s email address is {template.email} */}
+              '{template.programming_language}' is a '{template.noun}' that '{template.verb}' while '{template.ing_verb}'. I ran outta words but '{template.ed_verb}' and '{template.noun2}' are the last ones
             </div>
           ))
         : "No Users Avialable!"}
@@ -110,8 +112,8 @@ const validationSchema = yup.object().shape({
 const UserForm = ({ onSubmit }) => {
   return (
     <Formik
-      validate={validate}
-      validationSchema={validationSchema}
+      // validate={validate}
+      // validationSchema={validationSchema}
       initialValues={initialTemplateForm}
       onSubmit={onSubmit}
       render={props => {
