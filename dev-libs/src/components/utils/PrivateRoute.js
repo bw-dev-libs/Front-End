@@ -1,6 +1,7 @@
 import React from 'react';
 import Play from '../Play';
 import {Route, Redirect} from 'react-router-dom';
+import Dashboard from '../Dashboard';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
    return( 
@@ -8,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={() =>{
        if (localStorage.getItem('token'))  {
-          return <Play />;
+          return <Dashboard />;
         } else {
           return <Redirect to="/login" />;
         }}
