@@ -100,7 +100,7 @@ const UserForm = ({ onSubmit }) => {
             <button type="submit">Create Account</button>
 
             <p>
-              Alread have an account?
+              Already have an account?
               <span>
                 <Link className="login-span" to="/login">
                   {" "}
