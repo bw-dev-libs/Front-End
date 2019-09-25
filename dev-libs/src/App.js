@@ -8,6 +8,7 @@ import Signup from "./components/Signup";
 import Play from "./components/Play";
 import Dashboard from "./components/Dashboard";
 import LandingPage from "./components/LandingPage";
+import PrivateRoute from "./components/utils/PrivateRoute";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-      <Route path="/play" component={Play} />
+      <PrivateRoute path="/play" component={Play} />
       <Route path="/dashboard" component={Dashboard} />
     </div>
   );
