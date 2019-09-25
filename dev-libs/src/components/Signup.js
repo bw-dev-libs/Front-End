@@ -38,7 +38,7 @@ export default function Container() {
       password: formValues.password
     };
     axios
-      .post('https://dev-libs.herokuapp.com/api/auth/login', friendToPost)
+      .post('https://dev-libs.herokuapp.com/api/auth/register', friendToPost)
       .then(res => {
         // res.data contains the newly created friend
         const newLyCreatedFriendFromServer = res.data;
