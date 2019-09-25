@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import * as yup from "yup";
 import logo from "../icon.svg";
 
-
-const UsersApi = "https://reqres.in/api/users";
+const RegistrationApi = "https://dev-libs.herokuapp.com/api/auth/register";
+const UsersApi = "https://dev-libs.herokuapp.com/api/users";
 const initialUserForm = {
-  name: "",
-  email: "",
-  password: "",
-  termsOfService: false
+  username: "",
+
+  password: ""
 };
 
 export default function Container() {
@@ -22,7 +21,9 @@ export default function Container() {
     axios
       .get(UsersApi)
       .then(res => {
-        setUsersList(res.data.data);
+        // debugger
+        // console.log(res.data);
+        setUsersList(res.data);
       })
       .catch(err => {
         debugger;
@@ -32,17 +33,19 @@ export default function Container() {
 
   // 2- THIS GOES INTO <Formik /> `onSubmit` prop
   const addUser = (formValues, actions) => {
-    const friendToPost = {
-      name: formValues.name,
-      email: formValues.email,
+    const userToPost = {
+      username: formValues.username,
+
       password: formValues.password
     };
     axios
-      .post(UsersApi, friendToPost)
+      .post(RegistrationApi, userToPost)
       .then(res => {
         // res.data contains the newly created friend
-        const newLyCreatedFriendFromServer = res.data;
-        setUsersList(usersList.concat(newLyCreatedFriendFromServer));
+        // debugger;
+        console.log(res.data);
+        const newlyRegisteredUser = res.data;
+        setUsersList(usersList.concat(newlyRegisteredUser));
         actions.resetForm();
       })
       .catch(err => {
@@ -62,26 +65,19 @@ export default function Container() {
       <UserForm onSubmit={addUser} />
 
       {/* should be its own component: */}
-      {/* {usersList.length
-        ? usersList.map(user => (
-            <div key={user.id}>
-              {user.name}  the address {user.email}
-            </div>
-          ))
-        : "No Users Avialable!"} */}
+      {usersList.length
+        ? usersList.map(user => <div key={user.id}>{user.username}</div>)
+        : "No Users Avialable!"}
     </div>
   );
 }
 //------------------------------------------------
 const validate = formValues => {
   const errors = {};
-  if (formValues.email === "waffle@syrup.com") {
-    errors.email = "That email is already taken.";
-  }
 };
 const validationSchema = yup.object().shape({
-  name: yup.string().required("Please enter your name"),
-  email: yup.string().required("Please enter your email address"),
+  username: yup.string().required("Please enter your username"),
+
   password: yup
     .string()
     .required("No password provided.")
@@ -109,12 +105,8 @@ const UserForm = ({ onSubmit }) => {
                 !props.dirty && <div>time to start typing!!</div>
               } */}
             <div>
-              <Field name="name" type="text" placeholder="Name" />
-              <ErrorMessage name="name" component="div" />
-            </div>
-            <div>
-              <Field name="email" type="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" />
+              <Field name="username" type="text" placeholder="Username" />
+              <ErrorMessage name="username" component="div" />
             </div>
 
             <div>
@@ -127,7 +119,10 @@ const UserForm = ({ onSubmit }) => {
             <p>
               Alread have an account?
               <span>
-                <Link className ="login-span"to="/login"> Log in</Link>
+                <Link className="login-span" to="/login">
+                  {" "}
+                  Log in
+                </Link>
               </span>
             </p>
           </Form>
