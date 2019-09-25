@@ -73,7 +73,7 @@ export default function Container() {
 }
 //------------------------------------------------
 const validate = formValues => {
-  const errors = {};
+  // const errors = {};
 };
 const validationSchema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
