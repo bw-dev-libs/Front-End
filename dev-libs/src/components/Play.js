@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import axiosWithAuth from './utils/axiosWithAuth';
+import axiosWithAuth from "./utils/axiosWithAuth";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 // import * as yup from "yup";
@@ -53,7 +53,7 @@ export default function Play() {
       ed_verb: formValues.ed_verb,
       noun2: formValues.noun2,
       // user_id: formValues.user_id,
-      user_id: "1",
+      user_id: "1"
     };
     // axiosWithAuth().post(UsersApi, and so on . . .)
     axiosWithAuth()
@@ -85,16 +85,14 @@ export default function Play() {
       {usersList.length
         ? usersList.map(template => (
             <div key={template.id}>
-              {/* {template.first_name}'s email address is {template.email} */}'
-              I was programming in '{template.programming_language}', trying to
-              get all of my '{template.noun}' to properly '{template.verb}'.
+               I was programming in '{template.programming_language}', trying
+              to get all of my '{template.noun}' to properly '{template.verb}'.
               However, nothing was actually '{template.ing_verb}'.. It was then
               I realized I hadn't even '{template.ed_verb}' my '{template.noun2}
               '.
             </div>
           ))
         : "No Users Avialable!"}
-        
     </div>
   );
 }
