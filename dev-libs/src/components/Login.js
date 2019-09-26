@@ -1,5 +1,6 @@
 import React from "react";
 import axiosWithAuth from './utils/axiosWithAuth';
+import axios from 'axios';
 import styled from "styled-components";
 
 import logo from "../icon.svg";
@@ -70,7 +71,10 @@ const StyledLogin = styled.div`
   }
 `;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eac87950a9a50dbd95c4c937225c08886c9e7120
 class Login extends React.Component {
     state= {
       credentials: {
