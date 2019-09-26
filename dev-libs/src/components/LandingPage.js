@@ -3,7 +3,7 @@ import logo from "../icon.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import "./less/LandingPage.less";
+
 
 const StyledLandingPage = styled.div`
   background: #f5f5f5;
