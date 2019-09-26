@@ -96,22 +96,22 @@ class Dashboard extends React.Component {
         this.setState({ usersList: res.data });
       });
   }
-  update = game => {
-    axios
-      .put("", game)
-      .then(res => {
-        this.setState({
-          updateSuccessMessage: res.data.successMessage,
-          putError: ""
-        });
-      })
-      .catch(err => {
-        this.setState({
-          updateSuccessMessage: "",
-          updateError: err.res.data.Error
-        });
-      });
-  };
+  // update = game => {
+  //   axios
+  //     .put("", game)
+  //     .then(res => {
+  //       this.setState({
+  //         updateSuccessMessage: res.data.successMessage,
+  //         putError: ""
+  //       });
+  //     })
+  //     .catch(err => {
+  //       this.setState({
+  //         updateSuccessMessage: "",
+  //         updateError: err.res.data.Error
+  //       });
+  //     });
+  // };
   delete = game => {
     //     axios
     //     .delete(url, { params: requestData })
