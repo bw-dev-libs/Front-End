@@ -73,12 +73,21 @@ export class Edit extends React.Component{
       }
     });
   };
+  handleSubmit = e => {
+    const ID = this.props.match.params.id
+    e.preventDefault();
+    axiosWithAuth()
+    .put(`/api/templates/${ID}`, this.state.initialTemplate)
+    .then(res => {
+      console.log(res)
+    })
+  }
   render(){
     return (
       <StyledEdit>
         <Navigationlite/>
         <h2>Edit</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input  className="input-field"
           name="programming_language"
           type="text"
