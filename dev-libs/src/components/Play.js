@@ -52,7 +52,7 @@ const UsersApi = "https://dev-libs.herokuapp.com/api/users/1/templates";
 //   username: "",
 //   password: ""
 // };
-const initialTemplateForm = {
+  const initialTemplateForm = {
   id: "", //
   programming_language: "",
   noun: "",

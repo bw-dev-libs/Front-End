@@ -1,15 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
+const ID = localStorage.getItem("userID");
+
 class Delete extends React.Component {
     handleRemove = game => {
-      const url = ``;
+      const url = `https://dev-libs.herokuapp.com/api/templates/${ID}`;
   
       axios
         .delete(url)
         .then(res => {
+            console.log(res)
           this.setState(previousState => {
             return {
+                
             //   games: previousState.game.filter(e => e.id !== game.id)
             };
           });
