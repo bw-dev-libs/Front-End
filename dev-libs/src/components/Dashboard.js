@@ -38,12 +38,14 @@ const DashboardStyled = styled.div`
 
   .buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
     margin-bottom: 9rem;
 
     .landing-btn {
       width: 40%;
+      margin: 15px 0;
       padding: 10px 15px;
       background-color: #55af64;
       text-decoration: none;
@@ -96,8 +98,20 @@ class Dashboard extends React.Component {
       });
   }
   selectStory = id => {
-    this.setState({selectedStory: id})
-  }
+    this.setState({ selectedStory: id });
+  };
+
+  tweetStory = id => {
+    const url = `https://twitter.com/intent/tweet`;
+    const storyElem = document.getElementById(`${this.state.selectedStory}`);
+    const story = storyElem ? storyElem.textContent : "I just made a cool story with dev-libs!"
+    const hashtag = "%0D%23devlibs dev-libs.netlify.com"
+    // replace the line breaks and spaces with their "URL" equivalent
+    const tweet = (story+hashtag).replace(/ It/, "%0DIt").replace(/\s/g, "%20")
+    const total = url + "?text=" + tweet;
+    window.open(total,'popup','width=600,height=600')
+  };
+
   delete = game => {
     //     axios
     //     .delete(url, { params: requestData })
@@ -116,7 +130,18 @@ class Dashboard extends React.Component {
         <h1>My Dashboard</h1>
         {this.state.usersList.length
           ? this.state.usersList.map(template => (
-              <Story key={template.id} id={template.id} onClick={() => this.selectStory(template.id)} style={template.id === this.state.selectedStory ? {boxShadow: "0 0 5px #55af64"} : null}>
+
+              <Story
+                key={template.id}
+                id={template.id}
+                onClick={() => this.selectStory(template.id)}
+                style={
+                  template.id === this.state.selectedStory
+                    ? { boxShadow: "0 0 5px #55af64" }
+                    : null
+                }
+              >
+
                 <br />I was programming in '{template.programming_language}',
                 trying to get all of my '{template.noun}' to properly '
                 {template.verb}
@@ -133,9 +158,18 @@ class Dashboard extends React.Component {
             Play!
           </Link>
           &nbsp; &nbsp;&nbsp;
-          <Link className="landing-btn" to={`/edit/${this.state.selectedStory}`}>
+          <Link
+            className="landing-btn"
+            to={`/edit/${this.state.selectedStory}`}
+          >
             Edit!
           </Link>
+          <a
+            className="landing-btn"
+            onClick={() => this.tweetStory(this.state.selectedStory)}
+          >
+            Tweet!
+          </a>
         </div>
       </DashboardStyled>
     );
