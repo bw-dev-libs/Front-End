@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axiosWithAuth from './utils/axiosWithAuth';
 import styled from "styled-components";
 
@@ -63,10 +64,13 @@ const StyledLogin = styled.div`
   p{
     font-size:1.25rem;
     font-weight:bold;
-    .login-span{
+    .signup-span{
     color: #55af64;
     font-weight:normal;
   }
+  }
+  h5{
+    color: #55af64;
   }
 `;
 
@@ -145,8 +149,16 @@ class Login extends React.Component {
       value={this.state.credentials.password}
       onChange={this.handleChange}
       placeholder="password"
-      /><h5>By logging in you agree to the ridiculously long terms that you didn't read.</h5>
+      /><h5>[By logging in you agree to the ridiculously long terms that you didn't read.]</h5>
       <button>Login!</button>
+      <p>
+                Don't have an account?&nbsp;&nbsp;&nbsp;
+                <span>
+                  <Link className="signup-span" to="/signup">
+                    Sign up
+                  </Link>
+                </span>
+              </p>
     </form>
       </StyledLogin>
   );
