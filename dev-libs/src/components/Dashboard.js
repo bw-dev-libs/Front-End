@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
       updateError: "",
       deleteSuccessMessage: "",
       deleteError: "",
-      usersList: dummyData,
+      usersList: [],
       selectedStory: null
     };
   }
@@ -155,7 +155,7 @@ class Dashboard extends React.Component {
           &nbsp; &nbsp;&nbsp;
           <Link
             className="landing-btn"
-            to={`/edit/${this.state.selectedStory}`}
+            to={this.state.selectedStory ? `/edit/${this.state.selectedStory}` : "/dashboard"}
           >
             Edit!
           </Link>
