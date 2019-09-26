@@ -116,7 +116,7 @@ class Dashboard extends React.Component {
         <h1>My Dashboard</h1>
         {this.state.usersList.length
           ? this.state.usersList.map(template => (
-              <Story key={template.id} id={template.id} onClick={() => this.selectStory(template.id)} style={template.id === this.state.selectedStory ? {boxShadow: "0 0 5px black"} : null}>
+              <Story key={template.id} id={template.id} onClick={() => this.selectStory(template.id)} style={template.id === this.state.selectedStory ? {boxShadow: "0 0 5px #55af64"} : null}>
                 <br />I was programming in '{template.programming_language}',
                 trying to get all of my '{template.noun}' to properly '
                 {template.verb}
