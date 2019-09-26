@@ -5,7 +5,8 @@ import axiosWithAuth from "./utils/axiosWithAuth";
 import { dummyData } from "./utils/data";
 import styled from "styled-components";
 
-import logo from "../icon.svg";
+import tweet from "../tweet.png";
+import post from "../post.svg";
 import Navigation from "./Navigation";
 import Navigationlite from "./Navigationlite";
 
@@ -42,7 +43,7 @@ const DashboardStyled = styled.div`
     justify-content: space-between;
     padding: 20px;
     margin-bottom: 9rem;
-
+   
     .landing-btn {
       width: 40%;
       margin: 15px 0;
@@ -62,6 +63,13 @@ const DashboardStyled = styled.div`
       }
     }
   }
+  .tweet {
+      /* display:none; */
+      position: relative;
+      left: 280px;
+      bottom:-180px;
+      cursor: pointer;
+    }
 `;
 
 const Story = styled.div`
@@ -70,7 +78,7 @@ const Story = styled.div`
   border: 2px solid black;
   margin-bottom: 2rem;
   font-size: 1.25rem;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;
@@ -104,12 +112,16 @@ class Dashboard extends React.Component {
   tweetStory = id => {
     const url = `https://twitter.com/intent/tweet`;
     const storyElem = document.getElementById(`${this.state.selectedStory}`);
-    const story = storyElem ? storyElem.textContent : "I just made a cool story with dev-libs!"
-    const hashtag = "%0D%23devlibs dev-libs.netlify.com"
+    const story = storyElem
+      ? storyElem.textContent
+      : "I just made a cool story with dev-libs!";
+    const hashtag = "%0D%23devlibs dev-libs.netlify.com";
     // replace the line breaks and spaces with their "URL" equivalent
-    const tweet = (story+hashtag).replace(/ It/, "%0DIt").replace(/\s/g, "%20")
+    const tweet = (story + hashtag)
+      .replace(/ It/, "%0DIt")
+      .replace(/\s/g, "%20");
     const total = url + "?text=" + tweet;
-    window.open(total,'popup','width=600,height=600')
+    window.open(total, "popup", "width=600,height=600");
   };
 
   delete = game => {
@@ -130,7 +142,6 @@ class Dashboard extends React.Component {
         <h1>My Dashboard</h1>
         {this.state.usersList.length
           ? this.state.usersList.map(template => (
-
               <Story
                 key={template.id}
                 id={template.id}
@@ -141,7 +152,6 @@ class Dashboard extends React.Component {
                     : null
                 }
               >
-
                 <br />I was programming in '{template.programming_language}',
                 trying to get all of my '{template.noun}' to properly '
                 {template.verb}
@@ -164,13 +174,16 @@ class Dashboard extends React.Component {
           >
             Edit!
           </Link>
-          <a
-            className="landing-btn"
+          
+          <figure
+           className = "tweet"
             onClick={() => this.tweetStory(this.state.selectedStory)}
           >
-            Tweet!
-          </a>
+            <img src={tweet} alt="tweet" />
+           
+          </figure>
         </div>
+        
       </DashboardStyled>
     );
   }
