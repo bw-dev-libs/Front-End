@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import UserForm from '../components/Play';
 import {addTemplate} from '../components/addTemplate';
-
+import axiosWithAuth from './utils/axiosWithAuth';
 import List from "../components/Delete";
 
 
 const ID = localStorage.getItem("userID")
 
 
-class Edit extends React.Component{
+export class Edit extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -20,13 +20,24 @@ class Edit extends React.Component{
         ing_verb: "",
         ed_verb: "",
         noun2: "",
+        id: '',
       }
     };
 
   };
+  componentDidMount(){
+    const ID = this.props.match.params.id
+    axiosWithAuth()
+    .get(`/api/templates/${ID}`)
+    .then(res => {
+      console.log(res)
+      this.setState({
+      initialTemplate: {...res.data}})
+    })
+  }
   handleChange = e => {
     this.setState({
-      programming_language: {
+      initialTemplate: {
         ...this.state.initialTemplate,
         [e.target.name]: e.target.value
       }
