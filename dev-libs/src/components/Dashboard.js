@@ -68,6 +68,9 @@ const Story = styled.div`
   border: 2px solid black;
   margin-bottom: 2rem;
   font-size: 1.25rem;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 class Dashboard extends React.Component {
