@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axiosWithAuth from './utils/axiosWithAuth';
 import axios from 'axios';
 import styled from "styled-components";
 
 import logo from "../icon.svg";
+import Navigation from './Navigation'
+// import Navigation from "./Navigationlite";
 
 const StyledLogin = styled.div`
   /* background: #f5f5f5; */
@@ -12,18 +15,7 @@ const StyledLogin = styled.div`
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  .header{
-    /* width: 100%; */
-    /* background:green; */
-  }
-  img {
-    max-width: 100px;
-    /* border: 1rem solid red; */
-    position: relative;
-    top: -210px;
-    margin-top: 0rem;
-    margin-bottom: 5rem;
-  }
+
 
   h1{
     font-size: 3rem;
@@ -44,7 +36,7 @@ const StyledLogin = styled.div`
     font-weight:bold;
     border-radius: 0.5rem;
     width:21rem;
-    margin-bottom:9rem;
+    /* margin-bottom:9rem; */
     &:hover {
       cursor: pointer;
       background-color: white;
@@ -64,10 +56,17 @@ const StyledLogin = styled.div`
   p{
     font-size:1.25rem;
     font-weight:bold;
-    .login-span{
+    .signup-span{
     color: #55af64;
     font-weight:normal;
   }
+  &.top-paragraph{
+    margin-bottom:8rem;
+  }
+  }
+  h5{
+    color: #55af64;
+    margin-bottom:11rem;
   }
 `;
 
@@ -103,14 +102,12 @@ class Login extends React.Component {
     render() {
   return (
     <StyledLogin>
-      <div className="header">
-                <img src={logo} alt="logo" />
-              </div>
+   <Navigation/>
       
 
     <form onSubmit={this.handleSubmit}>
       <h1>Dev-Libs!</h1>
-      <p>Login in here!</p>
+      <p className="top-paragraph">Login in here!</p>
       
       {/* <linearGradient
        
@@ -146,8 +143,17 @@ class Login extends React.Component {
       value={this.state.credentials.password}
       onChange={this.handleChange}
       placeholder="password"
-      /><h5>By logging in you agree to the ridiculously long terms that you didn't read.</h5>
+      />
       <button>Login!</button>
+      <h5>[By logging in you agree to the ridiculously long terms that you didn't read.]</h5>
+      <p>
+                Don't have an account?&nbsp;&nbsp;&nbsp;
+                <span>
+                  <Link className="signup-span" to="/signup">
+                    Sign up
+                  </Link>
+                </span>
+              </p>
     </form>
       </StyledLogin>
   );
