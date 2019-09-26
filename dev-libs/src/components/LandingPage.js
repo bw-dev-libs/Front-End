@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../icon.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Navigationlite from "./Navigationlite";
 
 
 
@@ -49,6 +50,7 @@ const StyledLandingPage = styled.div`
 const LandingPage = () => {
   return (
     <StyledLandingPage>
+      <Navigationlite/>
       <img src={logo} alt="logo" />
       <h1>DEVLIBS</h1>
       <button >

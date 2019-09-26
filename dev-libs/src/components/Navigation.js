@@ -35,11 +35,24 @@ const NavStyled = styled.div`
     /* fill: red; */
     fill: #f5f5f5;
   }
+  .nav-link{
+      color: white;
+      font-weight: bold;
+      padding: 2%;
+      position: relative;
+      right:-250px;
+      /* margin:0 auto; */
+    text-decoration:none;
+    cursor: pointer;
+    /* display:none; */
+  }
 `;
 
 const Navigation = () => {
   return (
-    <NavStyled>
+    <NavStyled><br/>
+      <NavLink className='nav-link' to='/dashboard'>Check dashboard!</NavLink>&nbsp;&nbsp;&nbsp;
+        <NavLink className='nav-link' to='/play'>Lets Play!</NavLink>
       <div className="header">
         <img src={logo} alt="logo" />
       </div>
