@@ -78,7 +78,8 @@ class Dashboard extends React.Component {
       updateError: "",
       deleteSuccessMessage: "",
       deleteError: "",
-      usersList: dummyData
+      usersList: dummyData,
+      selectedStory: null
     };
   }
 
@@ -91,22 +92,9 @@ class Dashboard extends React.Component {
         this.setState({ usersList: res.data });
       });
   }
-  // update = game => {
-  //   axios
-  //     .put("", game)
-  //     .then(res => {
-  //       this.setState({
-  //         updateSuccessMessage: res.data.successMessage,
-  //         putError: ""
-  //       });
-  //     })
-  //     .catch(err => {
-  //       this.setState({
-  //         updateSuccessMessage: "",
-  //         updateError: err.res.data.Error
-  //       });
-  //     });
-  // };
+  selectStory = id => {
+    this.setState({selectedStory: id})
+  }
   delete = game => {
     //     axios
     //     .delete(url, { params: requestData })
@@ -125,7 +113,7 @@ class Dashboard extends React.Component {
         <h1>My Dashboard</h1>
         {this.state.usersList.length
           ? this.state.usersList.map(template => (
-              <Story key={template.id}>
+              <Story key={template.id} id={template.id} onClick={() => this.selectStory(template.id)} style={template.id === this.state.selectedStory ? {boxShadow: "0 0 5px black"} : null}>
                 <br />I was programming in '{template.programming_language}',
                 trying to get all of my '{template.noun}' to properly '
                 {template.verb}
@@ -142,7 +130,7 @@ class Dashboard extends React.Component {
             Play!
           </Link>
           &nbsp; &nbsp;&nbsp;
-          <Link className="landing-btn" to="/edit">
+          <Link className="landing-btn" to={`/edit/${this.state.selectedStory}`}>
             Edit!
           </Link>
         </div>
