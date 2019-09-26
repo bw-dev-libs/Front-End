@@ -6,7 +6,7 @@ import { dummyData } from "./utils/data";
 import styled from "styled-components";
 
 import logo from "../icon.svg";
-import Navigation from './Navigation'
+import Navigation from "./Navigation";
 import Navigationlite from "./Navigationlite";
 
 const DashboardStyled = styled.div`
@@ -36,33 +36,28 @@ const DashboardStyled = styled.div`
     margin-bottom: 5rem;
   }
 
-  button {
-    padding: 10px 15px;
-    background-color: #55af64;
-    color: white;
-    border: 1px solid #55af64;
-    background-color: 250ms;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    width: 21rem;
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
     margin-bottom: 9rem;
-    &:hover {
-      cursor: pointer;
-      background-color: white;
-      color: #55af64;
-      .landing-btn {
-        color: #55af64;
-      }
-    }
 
     .landing-btn {
+      width: 40%;
+      padding: 10px 15px;
+      background-color: #55af64;
       text-decoration: none;
       color: white;
-    }
-
-    .landing-btn:hover {
-      color: #55af64;
+      border: 1px solid #55af64;
+      background-color: 250ms;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: #55af64;
+      }
     }
   }
 `;
@@ -125,10 +120,8 @@ class Dashboard extends React.Component {
   render() {
     return (
       <DashboardStyled>
-        <Navigationlite/>
-        <div className="header">
-          {/* <img src={logo} alt="logo" /> */}
-        </div>
+        <Navigationlite />
+        <div className="header">{/* <img src={logo} alt="logo" /> */}</div>
         <h1>My Dashboard</h1>
         {this.state.usersList.length
           ? this.state.usersList.map(template => (
@@ -144,17 +137,15 @@ class Dashboard extends React.Component {
               </Story>
             ))
           : "No Stories Avialable!"}
-        <button type="submit">
+        <div className="buttons">
           <Link className="landing-btn" to="/play">
             Play!
           </Link>
-        </button>{" "}
-        &nbsp; &nbsp;&nbsp;
-        <button type="submit">
+          &nbsp; &nbsp;&nbsp;
           <Link className="landing-btn" to="/edit">
             Edit!
           </Link>
-        </button>
+        </div>
       </DashboardStyled>
     );
   }
