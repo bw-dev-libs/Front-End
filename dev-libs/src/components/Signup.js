@@ -5,7 +5,9 @@ import axios from "axios";
 import * as yup from "yup";
 import styled from "styled-components";
 
+import Navigation from './Navigation'
 import logo from "../icon.svg";
+// import Navigationlite from "./Navigationlite";
 
 const StyledSignup = styled.div`
   /* background: #f5f5f5; */
@@ -14,23 +16,13 @@ const StyledSignup = styled.div`
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  .header{
-    /* width: 100%; */
-    /* background:green; */
-  }
-  img {
-    max-width: 100px;
-    /* border: 1rem solid red; */
-    position: relative;
-    top: -210px;
-    margin-top: 0rem;
-    margin-bottom: 5rem;
-  }
+ 
 
-  h1{
+  h1 {
     font-size: 3rem;
     position: relative;
-    top: -50px;
+    margin-bottom: 3rem;
+    /* top: 50px; */
 
     /* border: 1rem solid red; */
     /* border-bottom: 15rem; */
@@ -43,56 +35,54 @@ const StyledSignup = styled.div`
     border: 1px solid #55af64;
     background-color: 250ms;
     font-size: 1.2rem;
-    font-weight:bold;
+    font-weight: bold;
     border-radius: 0.5rem;
-    width:21rem;
-    margin-bottom:9rem;
+    width: 21rem;
+    margin-bottom: 9rem;
     &:hover {
       cursor: pointer;
       background-color: white;
       color: #55af64;
     }
   }
-  .input-field{
- border-radius:0.5rem;
- font-size:1.25rem;
- max-width:20rem;
- margin: 10px auto;
- box-shadow:2px;
- /* border-bottom: 5rem; */
+  .input-field {
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    max-width: 20rem;
+    margin: 10px auto;
+    box-shadow: 2px;
+    /* border-bottom: 5rem; */
   }
-  .error-field{
- border-radius:0.5rem;
- font-size:1rem;
- max-width:20rem;
- margin: 1px auto;
- color: red;
- /* border-bottom: 5rem; */
+  .error-field {
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    max-width: 20rem;
+    margin: 1px auto;
+    color: red;
+    /* border-bottom: 5rem; */
   }
-  .sign-up-span{
-    color: #55af64;
-   
-  }
-  p{
-    font-size:1.25rem;
-    font-weight:bold;
-    .login-span{
-    color: #55af64;
-    font-weight:normal;
-  }
+
+  p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    .login-span {
+      color: #55af64;
+      font-weight: normal;
+    }
   }
 `;
 const StyledInput = styled.div`
-display:flex;
-flex-direction:column;
-align-items:flex-end;
-margin-bottom: 5rem;
-/* border: 2rem solid red; */
-span{
-  position: relative;
-  right:5rem;
-  /* top: 1rem; */
-}
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* margin-bottom: 5rem; */
+  /* border: 2rem solid red; */
+  span {
+    position: relative;
+    right: 5rem;
+  
+    /* top: 1rem; */
+  }
 `;
 
 const RegistrationApi = "https://dev-libs.herokuapp.com/api/auth/register";
@@ -169,21 +159,37 @@ const UserForm = ({ onSubmit }) => {
           // we will use pre-baked components
           // supplied by formik lib (like Formik)
           <StyledSignup>
+            <Navigation/>
             <Form>
-              <div className="header">
-                <img src={logo} alt="logo" />
-              </div>
+              
               <h1>SIGN UP</h1>
               {/* {
                 !props.dirty && <div>time to start typing!!</div>
               } */}
-              <StyledInput >
-                <Field  className="input-field" name="username" type="text" placeholder="Username" />
-                <ErrorMessage className="error-field" name="username" component="div" />
-            
-                <Field className="input-field" name="password" type="password" placeholder="Password" />
-                <ErrorMessage  className="error-field" name="password" component="div" />
-                <span className="sign-up-span">Forgot Password?</span>
+              <StyledInput>
+                <Field
+                  className="input-field"
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                />
+                <ErrorMessage
+                  className="error-field"
+                  name="username"
+                  component="div"
+                />
+
+                <Field
+                  className="input-field"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <ErrorMessage
+                  className="error-field"
+                  name="password"
+                  component="div"
+                />
               </StyledInput>
 
               <button type="submit">Create Account </button>
@@ -192,7 +198,6 @@ const UserForm = ({ onSubmit }) => {
                 Already have an account?&nbsp;&nbsp;&nbsp;
                 <span>
                   <Link className="login-span" to="/login">
-                    
                     Log in
                   </Link>
                 </span>

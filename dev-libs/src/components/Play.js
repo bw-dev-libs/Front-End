@@ -4,6 +4,7 @@ import axiosWithAuth from "./utils/axiosWithAuth";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import Navigationlite  from './Navigationlite'
 // import * as yup from "yup";
 import logo from "../icon.svg";
 import {addTemplate }from '../components/addTemplate';
@@ -27,14 +28,6 @@ const StyledPlay = styled.div`
     }
   }
 
-  img {
-    max-width: 100px;
-    /* border: 1rem solid red; */
-    position: relative;
-    top: -210px;
-    margin-top: 0rem;
-    margin-bottom: 5rem;
-  }
   .input-field{
  border-radius:0.5rem;
  font-size:1.25rem;
@@ -141,6 +134,7 @@ export const UserForm = ({ onSubmit }) => {
           // we will use pre-baked components
           // supplied by formik lib (like Formik)
           <StyledPlay>
+            <Navigationlite/>
             <Form>
               <div className="header">
                 <img src={logo} alt="logo" />

@@ -14,8 +14,7 @@ import Navigation from  "./components/Navigation"
 function App() {
   return (
     <div className="App">
-      <Navigation />
-      {/* <Route path="/edit" component={WordList}/> */}
+      {/* <Navigation /> */}
       <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
