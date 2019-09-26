@@ -57,25 +57,6 @@ function Play(props) {
   const [usersList, setUsersList] = useState([]);
   const [serverError, setServerError] = useState("");
 
-  // const fetchUsers = () => {
-  //   axios
-  //     .get(UsersApi)
-  //     .then(res => {
-  //       // debugger
-  //       setUsersList(res.data.data);
-  //     })
-  //     .catch(err => {
-  //       debugger;
-  //       setServerError(err.message);
-  //     });
-  // };
-
-  // 2- THIS GOES INTO <Formik /> `onSubmit` prop
-
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
-
   const addTemplateAndPush = v => {
     addTemplate(v)
       .then(() => props.history.push("/dashboard"))
@@ -87,23 +68,7 @@ function Play(props) {
 
   return (
     <div>
-      {/* should be its own component: */}
-      {serverError}
-
       <UserForm onSubmit={formValues => addTemplateAndPush(formValues)} />
-
-      {/* should be its own component: */}
-      {usersList.length
-        ? usersList.map(template => (
-            <div key={template.id}>
-              I was programming in '{template.programming_language}', trying to
-              get all of my '{template.noun}' to properly '{template.verb}'.
-              However, nothing was actually '{template.ing_verb}'.. It was then
-              I realized I hadn't even '{template.ed_verb}' my '{template.noun2}
-              '.
-            </div>
-          ))
-        : null}
     </div>
   );
 }
@@ -203,8 +168,6 @@ export const UserForm = ({ onSubmit }) => {
                 <ErrorMessage name="noun2" component="div" />
               </div>
               <button type="submit">Submit</button>
-              {/* <button type="submit">Back</button>&nbsp;&nbsp; */}
-              {/* <button type="submit">Next</button> */}
             </Form>
           </StyledPlay>
         );
