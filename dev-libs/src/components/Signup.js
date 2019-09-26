@@ -5,7 +5,9 @@ import axios from "axios";
 import * as yup from "yup";
 import styled from "styled-components";
 
+import Navigation from './Navigation'
 import logo from "../icon.svg";
+// import Navigationlite from "./Navigationlite";
 
 const StyledSignup = styled.div`
   /* background: #f5f5f5; */
@@ -14,23 +16,13 @@ const StyledSignup = styled.div`
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  .header {
-    /* width: 100%; */
-    /* background:green; */
-  }
-  img {
-    max-width: 100px;
-    /* border: 1rem solid red; */
-    position: relative;
-    top: -210px;
-    margin-top: 0rem;
-    margin-bottom: 5rem;
-  }
+ 
 
   h1 {
     font-size: 3rem;
     position: relative;
-    top: -50px;
+    margin-bottom: 3rem;
+    /* top: 50px; */
 
     /* border: 1rem solid red; */
     /* border-bottom: 15rem; */
@@ -83,11 +75,12 @@ const StyledInput = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
   /* border: 2rem solid red; */
   span {
     position: relative;
     right: 5rem;
+  
     /* top: 1rem; */
   }
 `;
@@ -166,10 +159,9 @@ const UserForm = ({ onSubmit }) => {
           // we will use pre-baked components
           // supplied by formik lib (like Formik)
           <StyledSignup>
+            <Navigation/>
             <Form>
-              <div className="header">
-                <img src={logo} alt="logo" />
-              </div>
+              
               <h1>SIGN UP</h1>
               {/* {
                 !props.dirty && <div>time to start typing!!</div>
