@@ -6,7 +6,6 @@ import { dummyData } from "./utils/data";
 import styled from "styled-components";
 
 import tweet from "../tweet.png";
-import post from "../post.svg";
 import Navigation from "./Navigation";
 import Navigationlite from "./Navigationlite";
 
