@@ -92,9 +92,9 @@ export default function Play() {
       // user_id: formValues.user_id,
       user_id: "1"
     };
-    // axiosWithAuth().post(UsersApi, and so on . . .)
+    const ID = localStorage.getItem("userID");
     axiosWithAuth()
-      .post(UsersApi, templateToPost)
+      .post(`https://dev-libs.herokuapp.com/api/users/${ID}/templates`, templateToPost)
       .then(res => {
         // res.data contains the newly created friend
         // const newlyCreatedTemplate = res.data;
@@ -103,7 +103,7 @@ export default function Play() {
         actions.resetForm();
       })
       .catch(err => {
-        debugger;
+        console.log(err);
       });
   };
 
