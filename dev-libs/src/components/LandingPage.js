@@ -51,13 +51,13 @@ const LandingPage = () => {
     <StyledLandingPage>
       <img src={logo} alt="logo" />
       <h1>DEVLIBS</h1>
-      <button type="submit">
+      <button >
         <Link className="landing-btn" to="/signup">
           Create Account!
         </Link>
       </button>{" "}
       &nbsp;
-      <button type="submit">
+      <button >
         <Link className="landing-btn" to="/login">
           Log in!
         </Link>
