@@ -111,10 +111,8 @@ class Dashboard extends React.Component {
   tweetStory = id => {
     const url = `https://twitter.com/intent/tweet`;
     const storyElem = document.getElementById(`${this.state.selectedStory}`);
-    const story = storyElem
-      ? storyElem.textContent
-      : "I just made a cool story with dev-libs!";
-    const hashtag = "%0D%23devlibs dev-libs.netlify.com";
+    const story = storyElem ? storyElem.textContent : "I just made a cool story with dev-libs!"
+    const hashtag = "%0D%23devlibs devlibs.netlify.com"
     // replace the line breaks and spaces with their "URL" equivalent
     const tweet = (story + hashtag)
       .replace(/ It/, "%0DIt")
