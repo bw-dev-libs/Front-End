@@ -1,15 +1,14 @@
 import React from 'react';
-import Play from '../Play';
 import {Route, Redirect} from 'react-router-dom';
-import Dashboard from '../Dashboard';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  console.log(rest)
    return( 
     <Route
       {...rest}
       render={() =>{
        if (localStorage.getItem('token'))  {
-          return <Component />;
+          return <Component {...rest} />;
         } else {
           return <Redirect to="/login" />;
         }}
