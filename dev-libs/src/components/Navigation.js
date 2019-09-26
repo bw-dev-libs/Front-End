@@ -14,7 +14,10 @@ const NavStyled = styled.div`
   top: -29px;
   width: 858px;
   border-radius: 2.2rem;
-  border-top: 2px solid black;
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  /* border-top: 2px solid black; */
   img {
     max-width: 100px;
     /* border: 1rem solid red; */
@@ -45,6 +48,12 @@ const NavStyled = styled.div`
     text-decoration:none;
     cursor: pointer;
     /* display:none; */
+    &:hover {
+      
+      color:black;
+      transform: scale(1.125);
+      transition: 0.3s ease-in-out;
+    }
   }
 `;
 
