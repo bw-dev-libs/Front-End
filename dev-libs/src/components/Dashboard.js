@@ -105,7 +105,6 @@ class Dashboard extends React.Component {
     const hashtag = "%0D%23devlibs dev-libs.netlify.com"
     // replace the line breaks and spaces with their "URL" equivalent
     const tweet = (story+hashtag).replace(/ It/, "%0DIt").replace(/\s/g, "%20")
-    console.log(tweet)
     const total = url + "?text=" + tweet;
     window.open(total,'popup','width=600,height=600')
   };
