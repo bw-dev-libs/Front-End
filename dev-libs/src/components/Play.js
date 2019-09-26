@@ -6,7 +6,6 @@ import axios from "axios";
 import styled from "styled-components";
 // import * as yup from "yup";
 import logo from "../icon.svg";
-import axiosWithAuth from "./utils/axiosWithAuth";
 
 const StyledPlay = styled.div`
   button {

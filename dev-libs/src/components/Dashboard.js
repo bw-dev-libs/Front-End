@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import axiosWithAuth from "./utils/axiosWithAuth";
+import { dummyData } from "./utils/data";
 
 class Dashboard extends React.Component {
   constructor() {
@@ -11,7 +12,7 @@ class Dashboard extends React.Component {
       updateError: '',
       deleteSuccessMessage: '',
       deleteError: '',
-      usersList: [],
+      usersList: dummyData
     };
   }
 
