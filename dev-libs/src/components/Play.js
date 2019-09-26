@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import axiosWithAuth from "./utils/axiosWithAuth";
-// import { Link } from "react-router-dom";
-import axios from "axios";
+import { withRouter } from "react-router-dom"
 import styled from "styled-components";
-import Navigationlite  from './Navigationlite'
+import Navigationlite from "./Navigationlite";
 // import * as yup from "yup";
 import logo from "../icon.svg";
-import {addTemplate }from '../components/addTemplate';
+import { addTemplate } from "../components/addTemplate";
 
 const StyledPlay = styled.div`
   button {
@@ -28,12 +26,12 @@ const StyledPlay = styled.div`
     }
   }
 
-  .input-field{
- border-radius:0.5rem;
- font-size:1.25rem;
- max-width:20rem;
- margin: 10px auto;
- /* border-bottom: 5rem; */
+  .input-field {
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    max-width: 20rem;
+    margin: 10px auto;
+    /* border-bottom: 5rem; */
   }
 `;
 
@@ -41,11 +39,7 @@ const StyledPlay = styled.div`
 // const TemplatesApi = "https://dev-libs.herokuapp.com/api/templates";
 const UsersApi = "https://dev-libs.herokuapp.com/api/users/1/templates";
 
-// const initialUserForm = {
-//   username: "",
-//   password: ""
-// };
-  const initialTemplateForm = {
+const initialTemplateForm = {
   id: "", //
   programming_language: "",
   noun: "",
@@ -56,49 +50,25 @@ const UsersApi = "https://dev-libs.herokuapp.com/api/users/1/templates";
   user_id: ""
 };
 
-export default function Play() {
+export default withRouter(Play);
+
+function Play(props) {
+  console.log(this)
   const [usersList, setUsersList] = useState([]);
   const [serverError, setServerError] = useState("");
 
-  // const fetchUsers = () => {
-  //   axios
-  //     .get(UsersApi)
-  //     .then(res => {
-  //       // debugger
-  //       setUsersList(res.data.data);
-  //     })
-  //     .catch(err => {
-  //       debugger;
-  //       setServerError(err.message);
-  //     });
-  // };
-
-  // 2- THIS GOES INTO <Formik /> `onSubmit` prop
- 
-
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
+  const addTemplateAndPush = v => {
+    addTemplate(v)
+      .then(() => props.history.push("/dashboard"))
+      .catch(() => {
+        console.log(props)
+        props.history.push("/dashboard");
+      });
+  };
 
   return (
     <div>
-      {/* should be its own component: */}
-      {serverError}
-
-      <UserForm onSubmit={addTemplate} />
-
-      {/* should be its own component: */}
-      {usersList.length
-        ? usersList.map(template => (
-            <div key={template.id}>
-              I was programming in '{template.programming_language}', trying to
-              get all of my '{template.noun}' to properly '{template.verb}'.
-              However, nothing was actually '{template.ing_verb}'.. It was then
-              I realized I hadn't even '{template.ed_verb}' my '{template.noun2}
-              '.
-            </div>
-          ))
-        : null}
+      <UserForm onSubmit={formValues => addTemplateAndPush(formValues)} />
     </div>
   );
 }
@@ -134,7 +104,7 @@ export const UserForm = ({ onSubmit }) => {
           // we will use pre-baked components
           // supplied by formik lib (like Formik)
           <StyledPlay>
-            <Navigationlite/>
+            <Navigationlite />
             <Form>
               <div className="header">
                 <img src={logo} alt="logo" />
@@ -144,7 +114,8 @@ export const UserForm = ({ onSubmit }) => {
               !props.dirty && <div>time to start typing!!</div>
               } */}
               <div id="programming_language">
-                <Field className="input-field"
+                <Field
+                  className="input-field"
                   name="programming_language"
                   type="text"
                   placeholder="Enter Programming Language here"
@@ -152,15 +123,26 @@ export const UserForm = ({ onSubmit }) => {
                 <ErrorMessage name="programming_language" component="div" />
               </div>
               <div id="noun">
-                <Field className="input-field" name="noun" type="text" placeholder="Enter a Noun" />
+                <Field
+                  className="input-field"
+                  name="noun"
+                  type="text"
+                  placeholder="Enter a Noun"
+                />
                 <ErrorMessage name="noun" component="div" />
               </div>
               <div id="verb">
-                <Field className="input-field" name="verb" type="text" placeholder="Enter a Verb" />
+                <Field
+                  className="input-field"
+                  name="verb"
+                  type="text"
+                  placeholder="Enter a Verb"
+                />
                 <ErrorMessage name="verb" component="div" />
               </div>
               <div id="ing_verb">
-                <Field className="input-field"
+                <Field
+                  className="input-field"
                   name="ing_verb"
                   type="text"
                   placeholder="Enter a Verb ending with -ing"
@@ -168,7 +150,8 @@ export const UserForm = ({ onSubmit }) => {
                 <ErrorMessage name="ing_verb" component="div" />
               </div>
               <div id="ed_verb">
-                <Field className="input-field"
+                <Field
+                  className="input-field"
                   name="ed_verb"
                   type="text"
                   placeholder="Enter a Verb enging with -ed"
@@ -176,7 +159,8 @@ export const UserForm = ({ onSubmit }) => {
                 <ErrorMessage name="ed_verb" component="div" />
               </div>
               <div id="noun2">
-                <Field className="input-field"
+                <Field
+                  className="input-field"
                   name="noun2"
                   type="text"
                   placeholder="Enter another Noun here"
@@ -184,8 +168,6 @@ export const UserForm = ({ onSubmit }) => {
                 <ErrorMessage name="noun2" component="div" />
               </div>
               <button type="submit">Submit</button>
-              {/* <button type="submit">Back</button>&nbsp;&nbsp; */}
-              {/* <button type="submit">Next</button> */}
             </Form>
           </StyledPlay>
         );

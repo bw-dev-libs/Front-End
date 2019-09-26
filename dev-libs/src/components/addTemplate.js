@@ -14,7 +14,7 @@ import axiosWithAuth from "../components/utils/axiosWithAuth";
       user_id: "1"
     };
     const ID = localStorage.getItem("userID");
-    axiosWithAuth()
+    return axiosWithAuth()
       .post(`https://dev-libs.herokuapp.com/api/users/${ID}/templates`, templateToPost)
       .then(res => {
         // res.data contains the newly created friend
