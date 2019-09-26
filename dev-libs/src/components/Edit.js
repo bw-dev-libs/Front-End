@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import UserForm from '../components/Play';
+import {addTemplate} from '../components/addTemplate';
 
 const initialTemplate = {
   usersList: []
@@ -16,12 +18,12 @@ const WordList = ({ words, updateWords }) => {
   };
 
   const ID = localStorage.getItem("userID") 
-const saveEdit = e => {
+  const saveEdit = e => {
  
  
   e.preventDefault();
 
-axios 
+  axios 
    
    .put(`https://dev-libs.herokuapp.com/api/templates/${ID}`)
       .then(response => {
@@ -48,14 +50,13 @@ const deleteWord = word => {
    };
   return (
     <form onSubmit={saveEdit}>
-       {/* should be its own component: */}
-       {serverError}
+      
 
 <UserForm onSubmit={addTemplate} />
 
 {/* should be its own component: */}
-{usersList.length
-  ? usersList.map(template => (
+{wordToEdit.length
+  ? wordToEdit.map(template => (
       <div key={template.id}>
         {/* {template.first_name}'s email address is {template.email} */}'
         I was programming in '{template.programming_language}', trying to

@@ -71,10 +71,6 @@ const StyledLogin = styled.div`
   }
 `;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> eac87950a9a50dbd95c4c937225c08886c9e7120
 class Login extends React.Component {
     state= {
       credentials: {
