@@ -3,6 +3,8 @@ import axios from "axios";
 import UserForm from '../components/Play';
 import {addTemplate} from '../components/addTemplate';
 
+import List from "../components/Delete";
+
 const initialTemplate = {
   usersList: []
 };
@@ -49,6 +51,7 @@ const deleteWord = word => {
    
    };
   return (
+    <>
     <form onSubmit={saveEdit}>
       
 
@@ -66,8 +69,11 @@ const deleteWord = word => {
         '.
       </div>
     ))
-  : "No Users Avialable!"}
+  : "Nothing to edit!"}
+  <button>Submit Changes</button>
     </form>
+    <List />
+    </>
   );
 };
 
