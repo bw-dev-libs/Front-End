@@ -14,7 +14,7 @@ import Navigation from  "./components/Navigation"
 function App() {
   return (
     <div className="App">
-      <Navigation />
+      {/* <Navigation /> */}
       <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
