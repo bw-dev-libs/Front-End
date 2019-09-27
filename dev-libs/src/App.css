@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   width: 800px;
-  /* height: 100vh; */
+  height: 100vh;
   margin: 30px auto;
   border-radius: 3rem;
   font-family: sans-serif;
@@ -10,10 +10,9 @@
   border-bottom: 2px solid black; */
   padding: 2rem;
   background: #f5f5f5;
-  -moz-box-shadow:    3px 3px 5px 6px #ccc;
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow:         3px 3px 5px 6px #ccc;
- 
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 div.test {
   /* background: pink; */
@@ -30,17 +29,16 @@ div.test {
   /* border-left: 2px solid black; */
   /* border-right: 2px solid black; */
   border-top: 2px solid black;
-
 }
 svg {
-position: relative  ;
-top: 120px;
+  position: relative;
+  top: 120px;
 
-width: 100%;
+  width: 100%;
 
-max-width: 860px;
-height: 100px;
-fill: #f5f5f5;
+  max-width: 860px;
+  height: 100px;
+  fill: #f5f5f5;
 }
 .App-logo {
   height: 40vmin;
@@ -124,4 +122,3 @@ button:hover .landing-btn {
 .landing-btn:hover {
   color: #55af64;
 } */
-
